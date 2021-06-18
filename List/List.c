@@ -1,16 +1,16 @@
 #include"List.h"
 
 Status InitList_Sq(Sqlist *L){
-    //¹¹ÔìÒ»¸öĞÂµÄÏßĞÔ±íL
+    //æ„é€ ä¸€ä¸ªæ–°çš„çº¿æ€§è¡¨L
     L->elem = (ElemType*)malloc(LIST_INIT_SIZE*sizeof(ElemType));
-    if (L->elem) exit(OVERFLOW); //´æ´¢·ÖÅäÊ§°Ü
-    L->length = 0;                //¿Õ±í³¤¶ÈÎª0
-    L->listsize = LIST_INIT_SIZE; //³õÊ¼´æ´¢ÈİÁ¿
+    if (L->elem) exit(OVERFLOW); //å­˜å‚¨åˆ†é…å¤±è´¥
+    L->length = 0;                //ç©ºè¡¨é•¿åº¦ä¸º0
+    L->listsize = LIST_INIT_SIZE; //åˆå§‹å­˜å‚¨å®¹é‡
     return OK;   
 }
 
 void DestoryList_Sq(Sqlist *L){
-//Ïú»ÙÏßĞÔ±íL
+//é”€æ¯çº¿æ€§è¡¨L
     free(L->elem);
     L->elem = NULL;
     L->length = 0;
@@ -18,21 +18,21 @@ void DestoryList_Sq(Sqlist *L){
 }
 
 void ClearList_Sq(Sqlist *L){
-//½«ÏßĞÔ±íLÖØÖÃÎª¿Õ±í
+//å°†çº¿æ€§è¡¨Lé‡ç½®ä¸ºç©ºè¡¨
     L->length = 0;
 }
 
 Status ListEmptpy_Sq(Sqlist L){
-//ÈôLÎª¿Õ±í£¬Ôò·µ»ØTRUE£¬·ñÔò·µ»ØFALSE
+//è‹¥Lä¸ºç©ºè¡¨ï¼Œåˆ™è¿”å›TRUEï¼Œå¦åˆ™è¿”å›FALSE
     return L.length == 0 ? True : Flase;
 }
 Status ListLength_Sq(Sqlist L){
-//·µ»ØÏßĞÔ±íLÖĞÔªËØ¸öÊı
+//è¿”å›çº¿æ€§è¡¨Lä¸­å…ƒç´ ä¸ªæ•°
     return L.length;
 }
 
 Status GetElem_Sq(Sqlist L,int i,ElemType *e){
-//ÓÃe·µ»ØLÖĞµÚi¸öÊı¾İÔªËØµÄÖµ
+//ç”¨eè¿”å›Lä¸­ç¬¬iä¸ªæ•°æ®å…ƒç´ çš„å€¼
     if (i < 1 || i > L.length)
         return ERROR;
     else
@@ -40,8 +40,8 @@ Status GetElem_Sq(Sqlist L,int i,ElemType *e){
     return OK;
 }
 Status LocateElem_Sq(Sqlist L,ElemType e,Status(Compare)(ElemType,ElemType)){
-//·µ»ØLÖĞµÚÒ»¸öÓëeÂú×ã¹ØÏµcompare()µÄÊı¾İÔªËØµÄÎ»Ğò¡£
-//ÈôÕâÑùµÄÊı¾İÔªËØ²»´æÔÚ£¬Ôò·µ»ØÖµÎª0.
+//è¿”å›Lä¸­ç¬¬ä¸€ä¸ªä¸eæ»¡è¶³å…³ç³»compare()çš„æ•°æ®å…ƒç´ çš„ä½åºã€‚
+//è‹¥è¿™æ ·çš„æ•°æ®å…ƒç´ ä¸å­˜åœ¨ï¼Œåˆ™è¿”å›å€¼ä¸º0.
     int i = 1;
     ElemType * p = L.elem;
     while (i <= L.length && !Compare(*p++,e))
@@ -53,8 +53,8 @@ Status LocateElem_Sq(Sqlist L,ElemType e,Status(Compare)(ElemType,ElemType)){
 }
 
 Status PriorElem_Sq(Sqlist L,ElemType cur_e,ElemType * pre_e){
-//Èôcur_eÊÇLµÄÊı¾İÔªËØ£¬ÇÒ²»ÊÇµÚÒ»¸ö£¬ÔòÓÃpre_e·µ»ØËüµÄÇ°Çı£¬
-//·ñÔò²Ù×÷Ê§°Ü£¬pre_eÎŞ¶¨Òå¡£
+//è‹¥cur_eæ˜¯Lçš„æ•°æ®å…ƒç´ ï¼Œä¸”ä¸æ˜¯ç¬¬ä¸€ä¸ªï¼Œåˆ™ç”¨pre_eè¿”å›å®ƒçš„å‰é©±ï¼Œ
+//å¦åˆ™æ“ä½œå¤±è´¥ï¼Œpre_eæ— å®šä¹‰ã€‚
     int i = 1;
     if (L.elem[0] != cur_e){
         while (i < L.length && L.elem[i] != cur_e)
@@ -68,8 +68,8 @@ Status PriorElem_Sq(Sqlist L,ElemType cur_e,ElemType * pre_e){
 }
 
 Status NextElem_Sq(Sqlist L,ElemType cur_e,ElemType * next_e){
-//Èôcur_eÊÇLµÄÊı¾İÔªËØ£¬ÇÒ²»ÊÇ×îºóÒ»¸ö£¬ÔòÓÃnext_e·µ»ØËüµÄºó¼Ì£¬·ñÔò²Ù×÷Ê§°Ü£¬
-//next_eÎŞ¶¨Òå
+//è‹¥cur_eæ˜¯Lçš„æ•°æ®å…ƒç´ ï¼Œä¸”ä¸æ˜¯æœ€åä¸€ä¸ªï¼Œåˆ™ç”¨next_eè¿”å›å®ƒçš„åç»§ï¼Œå¦åˆ™æ“ä½œå¤±è´¥ï¼Œ
+//next_eæ— å®šä¹‰
     int i = L.length-1;
     if (L.elem[i] != cur_e){
         while (i > 0 && L.elem[i] != cur_e)
@@ -83,7 +83,7 @@ Status NextElem_Sq(Sqlist L,ElemType cur_e,ElemType * next_e){
 }
 
 Status ListInsert_Sq(Sqlist *L, int i, ElemType e){
-//ÔÚLÖĞµÚi¸öÎ»ÖÃÖ®Ç°²åÈëĞÂµÄÔªËØe£¬LµÄ³¤¶È¼Ó1.
+//åœ¨Lä¸­ç¬¬iä¸ªä½ç½®ä¹‹å‰æ’å…¥æ–°çš„å…ƒç´ eï¼ŒLçš„é•¿åº¦åŠ 1.
     ElemType * newbase,* q,* p;
     if ( (i < 1) || (i > L->length+1)) return ERROR;
     if (L->length >= L->listsize){
@@ -100,7 +100,7 @@ Status ListInsert_Sq(Sqlist *L, int i, ElemType e){
 }
 
 Status ListDelete_Sq(Sqlist *L, int i, ElemType *e){
-//É¾³ıLµÄµÚi¸öÊı¾İÔªËØ£¬²¢ÓÃe·µ»ØÆäÖµ£¬LµÄ³¤¶È¼õ1.
+//åˆ é™¤Lçš„ç¬¬iä¸ªæ•°æ®å…ƒç´ ï¼Œå¹¶ç”¨eè¿”å›å…¶å€¼ï¼ŒLçš„é•¿åº¦å‡1.
     ElemType *p,*q;
     if ( (i < 1) || (i > L->length)) return ERROR;
     p = &(L->elem[i-1]);
@@ -112,7 +112,7 @@ Status ListDelete_Sq(Sqlist *L, int i, ElemType *e){
 }
 
 Status ListTraverse_Sq(Sqlist L,void(Visit)(ElemType)){
-//ÒÀ´Î¶ÔLµÄÃ¿¸öÊı¾İÔªËØµ÷ÓÃº¯Êıvisit().Ò»µ©visit()Ê§°Ü£¬Ôò²Ù×÷Ê§°Ü¡£
+//ä¾æ¬¡å¯¹Lçš„æ¯ä¸ªæ•°æ®å…ƒç´ è°ƒç”¨å‡½æ•°visit().ä¸€æ—¦visit()å¤±è´¥ï¼Œåˆ™æ“ä½œå¤±è´¥ã€‚
     int i;
     for (i=0;i<L.length;i++)Visit(L.elem[i]);
     return OK;

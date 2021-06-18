@@ -8,51 +8,51 @@
 #define OVERFLOW    -2
 typedef int Status;
 typedef int ElemType;
-#define LIST_INIT_SIZE  100 //ÏßĞÔ±í´æ´¢¿Õ¼äµÄ³õÊ¼·ÖÅäÁ¿
-#define LISTINCRMENT    10  //ÏßĞÔ±í´æ´¢¿Õ¼äµÄ·ÖÅäÔöÁ¿
+#define LIST_INIT_SIZE  100 //çº¿æ€§è¡¨å­˜å‚¨ç©ºé—´çš„åˆå§‹åˆ†é…é‡
+#define LISTINCRMENT    10  //çº¿æ€§è¡¨å­˜å‚¨ç©ºé—´çš„åˆ†é…å¢é‡
 
 typedef struct 
 {
-    ElemType * elem;    //´æ´¢¿Õ¼ä»ùÖ·
-    int length;         //µ±Ç°³¤¶È
-    int listsize;       //µ±Ç°·ÖÅäµÄ´æ´¢ÈİÁ¿£¨ÒÔsizeof(ElemType)
+    ElemType * elem;    //å­˜å‚¨ç©ºé—´åŸºå€
+    int length;         //å½“å‰é•¿åº¦
+    int listsize;       //å½“å‰åˆ†é…çš„å­˜å‚¨å®¹é‡ï¼ˆä»¥sizeof(ElemType)
 }Sqlist;
 
 Status InitList_Sq(Sqlist *L);
-//¹¹ÔìÒ»¸ö¿ÕµÄÏßĞÔ±íL
+//æ„é€ ä¸€ä¸ªç©ºçš„çº¿æ€§è¡¨L
 
 void DestoryList_Sq(Sqlist *L);
-//Ïú»ÙÏßĞÔ±íL
+//é”€æ¯çº¿æ€§è¡¨L
 
 void ClearList_Sq(Sqlist *L);
-//½«ÏßĞÔ±íLÖØÖÃÎª¿Õ±í
+//å°†çº¿æ€§è¡¨Lé‡ç½®ä¸ºç©ºè¡¨
 
 Status ListEmptpy_Sq(Sqlist L);
-//ÈôLÎª¿Õ±í£¬Ôò·µ»ØTRUE£¬·ñÔò·µ»ØFALSE
+//è‹¥Lä¸ºç©ºè¡¨ï¼Œåˆ™è¿”å›TRUEï¼Œå¦åˆ™è¿”å›FALSE
 
 Status ListLength_Sq(Sqlist L);
-//·µ»ØÏßĞÔ±íLÖĞÔªËØ¸öÊı
+//è¿”å›çº¿æ€§è¡¨Lä¸­å…ƒç´ ä¸ªæ•°
 
 Status GetElem_Sq(Sqlist L,int i,ElemType *e);
-//ÓÃe·µ»ØLÖĞµÚi¸öÊı¾İÔªËØµÄÖµ
+//ç”¨eè¿”å›Lä¸­ç¬¬iä¸ªæ•°æ®å…ƒç´ çš„å€¼
 
 Status LocateElem_Sq(Sqlist L,ElemType e,Status(Compare)(ElemType,ElemType));
-//·µ»ØLÖĞµÚÒ»¸öÓëeÂú×ã¹ØÏµcompare()µÄÊı¾İÔªËØµÄÎ»Ğò¡£
-//ÈôÕâÑùµÄÊı¾İÔªËØ²»´æÔÚ£¬Ôò·µ»ØÖµÎª0.
+//è¿”å›Lä¸­ç¬¬ä¸€ä¸ªä¸eæ»¡è¶³å…³ç³»compare()çš„æ•°æ®å…ƒç´ çš„ä½åºã€‚
+//è‹¥è¿™æ ·çš„æ•°æ®å…ƒç´ ä¸å­˜åœ¨ï¼Œåˆ™è¿”å›å€¼ä¸º0.
 
 Status PriorElem_Sq(Sqlist L,ElemType e,ElemType * pre_e);
-//Èôcur_eÊÇLµÄÊı¾İÔªËØ£¬ÇÒ²»ÊÇµÚÒ»¸ö£¬ÔòÓÃpre_e·µ»ØËüµÄÇ°Çı£¬
-//·ñÔò²Ù×÷Ê§°Ü£¬pre_eÎŞ¶¨Òå¡£
+//è‹¥cur_eæ˜¯Lçš„æ•°æ®å…ƒç´ ï¼Œä¸”ä¸æ˜¯ç¬¬ä¸€ä¸ªï¼Œåˆ™ç”¨pre_eè¿”å›å®ƒçš„å‰é©±ï¼Œ
+//å¦åˆ™æ“ä½œå¤±è´¥ï¼Œpre_eæ— å®šä¹‰ã€‚
 
 Status NextElem_Sq(Sqlist L,ElemType cur_e,ElemType * next_e);
-//Èôcur_eÊÇLµÄÊı¾İÔªËØ£¬ÇÒ²»ÊÇ×îºóÒ»¸ö£¬ÔòÓÃnext_e·µ»ØËüµÄºó¼Ì£¬·ñÔò²Ù×÷Ê§°Ü£¬
-//next_eÎŞ¶¨Òå
+//è‹¥cur_eæ˜¯Lçš„æ•°æ®å…ƒç´ ï¼Œä¸”ä¸æ˜¯æœ€åä¸€ä¸ªï¼Œåˆ™ç”¨next_eè¿”å›å®ƒçš„åç»§ï¼Œå¦åˆ™æ“ä½œå¤±è´¥ï¼Œ
+//next_eæ— å®šä¹‰
 
 Status ListInsert_Sq(Sqlist *L, int i, ElemType e);
-//ÔÚLÖĞµÚi¸öÎ»ÖÃÖ®Ç°²åÈëĞÂµÄÔªËØe£¬LµÄ³¤¶È¼Ó1.
+//åœ¨Lä¸­ç¬¬iä¸ªä½ç½®ä¹‹å‰æ’å…¥æ–°çš„å…ƒç´ eï¼ŒLçš„é•¿åº¦åŠ 1.
 
 Status ListDelete_Sq(Sqlist *L, int i, ElemType *e);
-//É¾³ıLµÄµÚi¸öÊı¾İÔªËØ£¬²¢ÓÃe·µ»ØÆäÖµ£¬LµÄ³¤¶È¼õ1.
+//åˆ é™¤Lçš„ç¬¬iä¸ªæ•°æ®å…ƒç´ ï¼Œå¹¶ç”¨eè¿”å›å…¶å€¼ï¼ŒLçš„é•¿åº¦å‡1.
 
 Status ListTraverse_Sq(Sqlist L,void(Visit)(ElemType));
-//ÒÀ´Î¶ÔLµÄÃ¿¸öÊı¾İÔªËØµ÷ÓÃº¯Êıvisit().Ò»µ©visit()Ê§°Ü£¬Ôò²Ù×÷Ê§°Ü¡£
+//ä¾æ¬¡å¯¹Lçš„æ¯ä¸ªæ•°æ®å…ƒç´ è°ƒç”¨å‡½æ•°visit().ä¸€æ—¦visit()å¤±è´¥ï¼Œåˆ™æ“ä½œå¤±è´¥ã€‚
