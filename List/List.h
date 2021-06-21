@@ -1,3 +1,5 @@
+#ifndef LIST_H_
+#define LIST_H_
 #include<stdio.h>
 #include<stdlib.h>
 #define True 1
@@ -56,3 +58,4 @@ Status ListDelete_Sq(Sqlist *L, int i, ElemType *e);
 
 Status ListTraverse_Sq(Sqlist L,void(Visit)(ElemType));
 //依次对L的每个数据元素调用函数visit().一旦visit()失败，则操作失败。
+#endif

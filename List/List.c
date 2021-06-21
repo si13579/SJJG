@@ -1,9 +1,12 @@
-#include"List.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include"list.h"
 
 Status InitList_Sq(Sqlist *L){
     //构造一个新的线性表L
     L->elem = (ElemType*)malloc(LIST_INIT_SIZE*sizeof(ElemType));
-    if (L->elem) exit(OVERFLOW); //存储分配失败
+    if (!L->elem) exit(OVERFLOW); //存储分配失败
     L->length = 0;                //空表长度为0
     L->listsize = LIST_INIT_SIZE; //初始存储容量
     return OK;   
