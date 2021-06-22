@@ -42,7 +42,7 @@ Status LocateElem_Sq(Sqlist L,ElemType e,Status(Compare)(ElemType,ElemType));
 //返回L中第一个与e满足关系compare()的数据元素的位序。
 //若这样的数据元素不存在，则返回值为0.
 
-Status PriorElem_Sq(Sqlist L,ElemType e,ElemType * pre_e);
+Status PriorElem_Sq(Sqlist L,ElemType cur_e,ElemType * pre_e);
 //若cur_e是L的数据元素，且不是第一个，则用pre_e返回它的前驱，
 //否则操作失败，pre_e无定义。
 
