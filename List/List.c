@@ -120,3 +120,49 @@ Status ListTraverse_Sq(Sqlist L,void(Visit)(ElemType)){
     for (i=0;i<L.length;i++)Visit(L.elem[i]);
     return OK;
 }
+
+Status Equal(ElemType a,ElemType b){
+    return (a == b) ? True : Flase;
+}
+//算法2.1
+void Union_Sq(Sqlist *La,Sqlist Lb){
+    //将所有在线性表Lb中但不在La中的数据元素插入到La中
+    int La_len = ListLength_Sq(*La);
+    int Lb_len = ListLength_Sq(Lb);
+    int i;
+    ElemType e;
+    for (i = 1; i <= Lb_len; i++){
+        GetElem_Sq(Lb,i,&e);
+        if (!LocateElem_Sq(*La,e,Equal))ListInsert_Sq(La,++La_len,e);
+    }
+}
+
+void MerageList_Sq(Sqlist La,Sqlist Lb,Sqlist *Lc){
+    //已知线性表La和Lb中的数据元素按值非递减排列
+    //归并La和Lb得到新的线性表Lc，Lc的数据元素也按值非递减排列
+    //InitList_Sq(Lc);
+    int La_len,Lb_len,i=1,j=1,k=0;
+    La_len = ListLength_Sq(La);
+    Lb_len = ListLength_Sq(Lb);
+    ElemType ai,bj;
+    while ((i <= La_len) &&(j <= Lb_len)){
+        GetElem_Sq(La,i,&ai);
+        GetElem_Sq(Lb,j,&bj);
+        if (ai <=bj){
+            ListInsert_Sq(Lc,++k,ai);
+            ++i;
+        }
+        else {
+            ListInsert_Sq(Lc,++k,bj);
+            ++j;
+        }
+    }
+    while (i <= La_len){
+        GetElem_Sq(La,i++,&ai);
+        ListInsert_Sq(Lc,++k,ai);
+    }
+    while (j <= Lb_len){
+        GetElem_Sq(Lb,j++,&bj);
+        ListInsert_Sq(Lc,++k,bj);
+    }
+}

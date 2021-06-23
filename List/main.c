@@ -2,11 +2,12 @@
 #include<stdlib.h>
 #include "list.h"
 void printElem(ElemType e){
-    printf("%d\n",e);
+    printf("%d ",e);
 }
 Status CmpGreater(ElemType data,ElemType e){
     return data > e ? True : Flase;
 }
+/*
 int main(void)
 {
     Sqlist L;
@@ -83,3 +84,72 @@ int main(void)
     
     return 0;
 }  
+*/
+
+/*
+int main(void)
+{
+    //算法2.1 
+    Sqlist La,Lb;
+    ElemType a[4] = {3,5,8,11};
+    ElemType b[7] = {2,6,8,9,11,15,20};
+    int i;
+
+    InitList_Sq(&La);
+    for (i=0;i<4;i++){
+        ListInsert_Sq(&La,i+1,a[i]);
+    }
+    puts("La");
+    ListTraverse_Sq(La,printElem);
+    
+    InitList_Sq(&Lb);
+    for (i=0;i<7;i++){
+        ListInsert_Sq(&Lb,i+1,b[i]);
+    }
+    puts("Lb");
+    ListTraverse_Sq(Lb,printElem);
+
+    Union_Sq(&La,Lb);
+    printf("将所有在线性表Lb中但不在La中的数据元素插入到La中后\n");
+    puts("La");
+    ListTraverse_Sq(La,printElem);
+
+    return 0;
+
+}
+*/
+
+int main(void)
+{
+    //算法2.2
+    Sqlist La,Lb,Lc;
+    ElemType a[4] = {3,5,8,11};
+    ElemType b[7] = {2,6,8,9,11,15,20};
+    int i;
+
+    InitList_Sq(&La);
+    for (i=0;i<4;i++){
+        ListInsert_Sq(&La,i+1,a[i]);
+    }
+    puts("La");
+    ListTraverse_Sq(La,printElem);
+    printf("\n");
+
+    InitList_Sq(&Lb);
+    for (i=0;i<7;i++){
+        ListInsert_Sq(&Lb,i+1,b[i]);
+    }
+    puts("Lb");
+    ListTraverse_Sq(Lb,printElem);
+    printf("\n");
+
+    InitList_Sq(&Lc);
+    MerageList_Sq(La,Lb,&Lc);
+    printf("归并La和Lc得到新的线性表\n");
+    
+    puts("Lc");
+    ListTraverse_Sq(Lc,printElem);
+    printf("\n");
+    return 0;
+
+}

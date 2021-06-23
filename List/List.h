@@ -58,4 +58,11 @@ Status ListDelete_Sq(Sqlist *L, int i, ElemType *e);
 
 Status ListTraverse_Sq(Sqlist L,void(Visit)(ElemType));
 //依次对L的每个数据元素调用函数visit().一旦visit()失败，则操作失败。
+
+void Union_Sq(Sqlist *La,Sqlist Lb);
+//将所有在线性表Lb中但不在La中的数据元素插入到La中
+
+void MerageList_Sq(Sqlist La,Sqlist Lb,Sqlist *Lc);
+    //已知线性表La和Lb中的数据元素按值非递减排列
+    //归并La和Lb得到新的线性表Lc，Lc的数据元素也按值非递减排列
 #endif
