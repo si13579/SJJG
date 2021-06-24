@@ -3,6 +3,7 @@
 #include<string.h>
 #include"list.h"
 
+//算法2.3
 Status InitList_Sq(Sqlist *L){
     //构造一个新的线性表L
     L->elem = (ElemType*)malloc(LIST_INIT_SIZE*sizeof(ElemType));
@@ -42,6 +43,8 @@ Status GetElem_Sq(Sqlist L,int i,ElemType *e){
         *e = L.elem[i-1];
     return OK;
 }
+
+//算法2.6
 Status LocateElem_Sq(Sqlist L,ElemType e,Status(Compare)(ElemType,ElemType)){
 //返回L中第一个与e满足关系compare()的数据元素的位序。
 //若这样的数据元素不存在，则返回值为0.
@@ -85,6 +88,7 @@ Status NextElem_Sq(Sqlist L,ElemType cur_e,ElemType * next_e){
     return ERROR;
 }
 
+//算法2.4
 Status ListInsert_Sq(Sqlist *L, int i, ElemType e){
 //在L中第i个位置之前插入新的元素e，L的长度加1.
     ElemType * newbase,* q,* p;
@@ -102,6 +106,7 @@ Status ListInsert_Sq(Sqlist *L, int i, ElemType e){
     return OK;
 }
 
+//算法2.5
 Status ListDelete_Sq(Sqlist *L, int i, ElemType *e){
 //删除L的第i个数据元素，并用e返回其值，L的长度减1.
     ElemType *p,*q;
@@ -137,10 +142,11 @@ void Union_Sq(Sqlist *La,Sqlist Lb){
     }
 }
 
+//算法2.2
 void MerageList_Sq(Sqlist La,Sqlist Lb,Sqlist *Lc){
     //已知线性表La和Lb中的数据元素按值非递减排列
     //归并La和Lb得到新的线性表Lc，Lc的数据元素也按值非递减排列
-    //InitList_Sq(Lc);
+    InitList_Sq(Lc);
     int La_len,Lb_len,i=1,j=1,k=0;
     La_len = ListLength_Sq(La);
     Lb_len = ListLength_Sq(Lb);
@@ -165,4 +171,24 @@ void MerageList_Sq(Sqlist La,Sqlist Lb,Sqlist *Lc){
         GetElem_Sq(Lb,j++,&bj);
         ListInsert_Sq(Lc,++k,bj);
     }
+}
+
+//算法2.6
+void MerageList_Sq1(Sqlist La,Sqlist Lb,Sqlist * Lc){
+    ElemType * pa,* pb,* pc;
+    ElemType *pa_last,*pb_last;
+    pa = La.elem;
+    pb = Lb.elem;
+    Lc->listsize = Lc->length = La.length + Lb.length;
+    pc = Lc->elem = (ElemType *)malloc(Lc->listsize * sizeof(ElemType));
+    if (!Lc->elem) exit(OVERFLOW);
+    pa_last = La.elem + La.length - 1;
+    pb_last = Lb.elem + Lb.length - 1;
+    while (pa <= pa_last && pb <= pb_last){
+        if (*pa <= * pb) *pc++ = *pa++;
+        else 
+            *pc++ = *pb++;
+    }
+    while (pa <= pa_last) *pc++ = *pa++;
+    while (pb <= pb_last) *pc++ = *pb++;
 }
