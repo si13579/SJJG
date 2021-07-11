@@ -49,8 +49,8 @@ void Free_SL(SLinkList *space,int k){
 void difference(SLinkList *space,int *S){
     int r,j,i,m,n;
     InitSpace_SL(*space);
-    (*S) = Malloc_SL(*space);
-    r = S;
+    (*S) = Malloc_SL(*space); //S头结点指针（游标）
+    r = (*S);  //r指向最后结点
     scanf("%d,%d",m,n);
     for (j = 0; j < m; j++){
         i = Malloc_SL(*space);
