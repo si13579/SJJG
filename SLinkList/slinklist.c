@@ -65,7 +65,7 @@ void difference(SLinkList space,int *S){
         scanf("%d",&b);
         p = (*S);
         k = space[*S].cur;
-        while ( k != space[r].cur && space[k].cur != b){
+        while ( k != space[r].cur && space[k].data != b){
             p = k;
             k = space[k].cur;
         }
@@ -195,7 +195,7 @@ int LocateElem(SLinkList space,int S,ElemType e,Status(Compare)(ElemType,ElemTyp
 
     i = 1;
     p = space[S].cur;
-    while (p && Compare(space[p].data,e)){
+    while (p && !Compare(space[p].data,e)){
         i++;
         p = space[p].cur;
     }
