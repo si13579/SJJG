@@ -122,7 +122,7 @@ Status PriorElem_L(LinkList L,ElemType cur_e,ElemType *pre_e){
         *pre_e = prior->data;
         return Ok;
     }
-    return NULL;
+    return ERROR;
 }
 
 /*
@@ -223,9 +223,9 @@ void MergeList_L(LinkList *La,LinkList *Lb,LinkList *Lc){
     LinkList pa,pb,pc;
     pa = (*La)->next;
     pb = (*Lb)->next;
-    Lc = pc = (*La);
+    (*Lc) = pc = (*La);
     while (pa && pb){
-        if (pa->data <= pa->data){
+        if (pa->data <= pb->data){
             pc->next = pa;
             pc = pa;
             pa = pa->next;
@@ -237,7 +237,7 @@ void MergeList_L(LinkList *La,LinkList *Lb,LinkList *Lc){
         }
     }
     pc->next = pa ? pa : pb;
-    free(Lb);
+    free(*Lb);
 }
 
 /*
@@ -246,7 +246,7 @@ void MergeList_L(LinkList *La,LinkList *Lb,LinkList *Lc){
 */
 void ListTravese(LinkList L,void(Visit)(ElemType)){
     LinkList p;
-    if (L == NULL || L->next == NULL) return ERROR;
+    if (L == NULL || L->next == NULL) return;
     p = L->next;
     while (p){
         Visit(p->data);
