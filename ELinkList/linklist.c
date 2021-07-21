@@ -269,6 +269,7 @@ Position LocateElem(LinkList L,ElemType e,Status(compare)(ElemType,ElemType)){
     p = L.head->next;
     while ( p && !compare(p->data,e))
         p = p->next;
+    return p;
 }
 
 /*
