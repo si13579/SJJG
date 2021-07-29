@@ -15,7 +15,7 @@
 #define STACKINCRMENT   10    
 
 typedef int Status;
-typedef int SElemType;
+typedef char SElemType;
 typedef struct {
     SElemType *base;
     SElemType *top;
@@ -80,5 +80,10 @@ Status StackTraverse(SqStack S,void(visit)(SElemType));
 对于输入的任意一个非负十进制整数，打印输出与其等值的八进制数
 */
 void conversion();
+
+/*
+行编辑程序，模拟编辑文本时的退格与清空行的操作
+*/
+void LineEdit();
 
 #endif
